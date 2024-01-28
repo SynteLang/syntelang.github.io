@@ -13,7 +13,7 @@
 }
 @font-face {
 	font-family:'Source Serif Light';
-	src:url('SourceSerifPro-Light.ttf');
+	src:url('SourceSerifPro-Light.woff2');
 }
 body {
 	margin: auto;
