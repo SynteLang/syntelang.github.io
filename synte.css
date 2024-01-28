@@ -1,0 +1,113 @@
+/* written by hand, with love */
+:root {
+	--text: #444;
+	/*--coral: #E09090;*/
+	/*--coral: #d87474;*/
+	--coral: #cd4747;
+	--lightcoral: #E0A0A0;
+	--compl:#278b8b;
+}
+body {
+	margin: auto;
+	width: 99vw;
+	min-height:100vh;
+	font-family: 'Source Serif Light', 'Georgia', serif;
+	font-size:11pt;
+	font-weight:300;
+	color:var(--text);
+}
+.topbar {
+/*	overflow:hidden;
+	background-color:#fff;
+	position:fixed;
+	top:0;
+	width:100%;*/
+	padding-top:0.5em;
+	font-size:12pt;
+}
+.synte {
+	display:inline;
+	margin-top:0.5em;
+	padding-left:1.2em;
+	font-size:110%;
+	font-family:'Iosevka', 'monospace';
+	color:var(--text);
+}
+.repo {
+	display:inline;
+	float:right;
+	margin-right:1.5em;
+	font-size:110%;
+	font-family:'Iosevka', 'monospace';
+	padding:0 0.25em 0 1.2em;
+}
+.rss {
+	display:inline;
+	float:right;
+	margin-right:10vw;
+	font-size:110%;
+	font-family:'Iosevka', 'monospace';
+	padding:0 0.25em 0 1.2em;
+	border: 1px dotted var(--coral);
+	border-radius:3px;
+}
+.wrapper {
+	margin: 1.5em calc(10vw - 1em);
+	min-height: 20em;
+	max-width: 70ch;
+}
+.date {
+	float:right;
+	font-family:'Iosevka', 'monospace';
+}
+h1 {
+	margin:1em 0;
+	padding-left:1ch;
+	border-left:2px dotted var(--coral);
+	font-family:'Iosevka', 'monospace';
+}
+#logo {
+	font-size:75%;
+	position:relative;
+	top:-0.4em;
+	color:var(--coral);
+}
+.posts {
+	margin:3em 0;
+}
+.pin {
+	margin:0 0 -1em -1.5em;
+	color:var(--coral);
+}
+.post {
+	max-width:35ch;
+	border: 1px dotted var(--coral);
+	border-radius:3px;
+	padding:1.5em 2em;
+}
+.postlink {
+	color:var(--text);
+	display:block;
+}
+.pinned {
+	padding-left:1.5em;
+	margin-bottom:1.5em;
+}
+h2 {
+	margin-top:0;
+	font-family:'Iosevka', 'monospace';
+	font-size:14pt;
+}
+a {
+	color:var(--coral);
+	text-decoration:none;
+}
+a:hover {
+	color:var(--lightcoral);
+}
+.back {
+	font-size:10pt;
+}
+.content {
+	padding-bottom:4em;
+}
