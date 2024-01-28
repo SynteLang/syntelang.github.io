@@ -92,11 +92,12 @@ h1 {
 	max-width:35ch;
 	border: 1px dotted var(--coral);
 	border-radius:3px;
-	padding:1.5em 2em;
+	margin-bottom:1em;
 }
 .postlink {
 	color:var(--text);
 	display:block;
+	padding:1em;
 }
 .pinned {
 	padding-left:1.5em;
@@ -119,4 +120,7 @@ a:hover {
 }
 .content {
 	padding-bottom:4em;
+}
+.updated {
+	color:grey;
 }
