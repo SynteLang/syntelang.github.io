@@ -7,6 +7,14 @@
 	--lightcoral: #E0A0A0;
 	--compl:#278b8b;
 }
+@font-face {
+	font-family:'Iosevka';
+	src:url('iosevka.woff2');
+}
+@font-face {
+	font-family:'Source Serif Light';
+	src:url('SourceSerifPro-Light.ttf');
+}
 body {
 	margin: auto;
 	width: 99vw;
@@ -78,6 +86,7 @@ h1 {
 .pin {
 	margin:0 0 -1em -1.5em;
 	color:var(--coral);
+	filter:grayscale(100%);
 }
 .post {
 	max-width:35ch;
