@@ -63,7 +63,7 @@ body {
 	font-family:'Iosevka', 'monospace';
 }
 span.date {
-	margin:-0.4em -0.2em 0 0;
+	margin:-0.5em -0.2em 0 0;
 	font-size:.8em;
 	color:grey;
 }
@@ -97,7 +97,7 @@ h1 {
 .postlink {
 	color:var(--text);
 	display:block;
-	padding:.8em .8em 1.4em .8em;
+	padding:0.9em .8em 1.3em .8em;
 }
 .pinned {
 	padding-left:1.5em;
@@ -107,6 +107,9 @@ h2 {
 	margin-top:0;
 	font-family:'Iosevka', 'monospace';
 	font-size:1.15em;
+}
+.content h2 {
+	margin-top:2em;
 }
 a {
 	color:var(--coral);
@@ -123,7 +126,6 @@ a:hover {
 }
 code {
 	font-family:'Iosevka', 'monospace';
-	font-size:1.2em
 }
 .updated {
 	color:grey;

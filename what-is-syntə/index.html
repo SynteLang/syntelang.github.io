@@ -26,11 +26,11 @@
 	<p>Syntə is a live-coding language and platform with included sound engine.<br>
 The language is based around DSP, to perform audio synthesis. It is also user-extensible, meaning that you can build up your own abstractions (functions) to streamline your workflow. A library of useful functions is also included.</p>
 <p>Here I&rsquo;ll take you on a whistle stop tour, please refer to the <a href="https://github.com/syntelang/syntelang">documentation</a> for a more comprehensive guide with more info for beginners.</p>
-<h1 id="what-is-different-about-syntə">What is different about Syntə?</h1>
+<h2 id="what-is-different-about-syntə">What is different about Syntə?</h2>
 <p>Lot&rsquo;s of things, depending on what you&rsquo;re comparing it to. If you&rsquo;re coming from <code>pure data</code> or hardware modular, a lot of the concepts will be similar, but with more low level access compared to typical modules.
 A lot of the awkward and frustrating parts of pure data have been eliminated too. For example, loading and scanning samples is as simple as typing <code>wav &lt;filename&gt;</code>.<br>
-The syntax will feel very different to people used to tidalCycles or foxdot. In a way the language is more procedural/imperative, in another way it is more functional in style. This is because the base language is very atomic, almost like assembly language - a place where all paradigms converge.</p>
-<h1 id="patterns-and-shapes">Patterns and shapes</h1>
+The syntax will feel very different to people used to <code>tidalCycles</code> or <code>foxdot</code>. In a way the language is more procedural/imperative, in another way it is more functional in style. This is because the base language is very atomic, almost like assembly language - a place where all paradigms converge.</p>
+<h2 id="patterns-and-shapes">Patterns and shapes</h2>
 <p>A shape describes some part of a waveform or its amplitude or pitch. Shapes can also describe larger constructs in an arrangement or abstractions such as different timbres. A pattern is a repeated shape. Like a tiled surface or knitted jumper.<br>
 Syntə allows you to freely describe shapes and compose them into patterns. By its very nature nearly every shape is a repeating one.  MIDI note on/off signals are binary, so their &lsquo;shape&rsquo; is a square, or pulse, wave. With Syntə you can go beyond this by applying all manner of transformations to your patterns.  An example would be:</p>
 <blockquote>
@@ -44,7 +44,7 @@ out vca
 </code></pre>
 <p>This snippet produces a signal named <code>vca</code> which can be used in any way, but the name suggests <code>mul vca</code>, which is an amplifier (attenuator in this case). The pulse wave has been shaped by two filters.<br>
 Now, every approach has tradeoffs so don&rsquo;t expect to be performing the same way as other languages. I&rsquo;m continuing to develop and hone abstractions in the language, one idea for future is to create &rsquo;toolkits&rsquo; which would frame specific approaches. This would narrow the field of view (the underlying language still available though), yet also enable faster turn over of patterns and ideas.</p>
-<h1 id="does-syntə-have-any-other-tricks-up-its-sleeves">Does Syntə have any other tricks up its sleeves?</h1>
+<h2 id="does-syntə-have-any-other-tricks-up-its-sleeves">Does Syntə have any other tricks up its sleeves?</h2>
 <p>Having worked extensively with other methods for live-coding I was well aware of some of the pitfalls. So from the beginning I wanted to mitigate or eliminate them entirely.<br>
 One crucial area is sound levels. This is quite a deep topic, as it involves not just physics but psycho-acoustics too. Our ears are very frequency and level dependent and any audio needs to take this into consideration.  Traditionally for recorded music this has been done manually by studio and mastering engineers; however this is computing so we have an opportunity to let the code do most of the heavy-lifting. (no pun intended!)<br>
 The sound engine in Syntə has two principle mechanisms. The <code>mix</code> function reads the most recent oscillator frequency of a listing and sets a level based on the heuristic of approximating pink noise. You can read more about this in the delightful book The Artful Universe by John D. Barrow.<br>
@@ -59,11 +59,11 @@ wav wavname
 mix
 </code></pre>
 <p>Doesn&rsquo;t get much simpler than that. The possibilities immediately open up, for instance by inserting a <code>flip</code> after <code>osc</code> the sample will play backwards.</p>
-<h1 id="ok-but-whats-missing">Ok, but what&rsquo;s missing?</h1>
+<h2 id="ok-but-whats-missing">Ok, but what&rsquo;s missing?</h2>
 <p>Well, probably the biggest leap forward planned for this year is to port to systems other than BSD/Linux. MacOS would probably be the first target. A web port has been explored, but unfortunately Go doesn&rsquo;t play nicely with the WASM audio abstractions, so that has been shelved for now.<br>
 One possibility to consider is making the language strongly typed, which would assist beginners in getting going.<br>
 Another future possibility is implementing MIDI or OSC, this would open up the language and sound engine to be used as an alternative back-end for other sequence based languages, and also to play other instruments. A fun collab would be to combine sequenced midi from another live coder with sounds and patterns from Syntə 😀</p>
-<p>I&rsquo;m actively performing with and learning the language (no one is an expert in it yet!) and so far its been really rewarding. If anything the main challenge is keeping in mind all the possibilities in front of an audience! Its a nice problem to have :)</p>
+<p>I&rsquo;m actively performing with and learning the language (no one is an expert in it yet!) and so far its been really rewarding. If anything the main challenge is keeping in mind all the possibilities in front of an audience! It&rsquo;s a nice problem to have :)</p>
 
 	
 </div>
