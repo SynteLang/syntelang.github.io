@@ -20,7 +20,6 @@ body {
 	width: 99vw;
 	min-height:100vh;
 	font-family: 'Source Serif Light', 'Georgia', serif;
-	font-size:11pt;
 	font-weight:300;
 	color:var(--text);
 }
@@ -31,30 +30,25 @@ body {
 	top:0;
 	width:100%;*/
 	padding-top:0.5em;
-	font-size:12pt;
+	font-family:'Iosevka', 'monospace';
+	font-size:1.1em;
 }
 .synte {
 	display:inline;
 	margin-top:0.5em;
 	padding-left:1.2em;
-	font-size:110%;
-	font-family:'Iosevka', 'monospace';
 	color:var(--text);
 }
 .repo {
 	display:inline;
 	float:right;
 	margin-right:1.5em;
-	font-size:110%;
-	font-family:'Iosevka', 'monospace';
 	padding:0 0.25em 0 1.2em;
 }
 .rss {
 	display:inline;
 	float:right;
 	margin-right:10vw;
-	font-size:110%;
-	font-family:'Iosevka', 'monospace';
 	padding:0 0.25em 0 1.2em;
 	border: 1px dotted var(--coral);
 	border-radius:3px;
@@ -73,11 +67,11 @@ h1 {
 	padding-left:1ch;
 	border-left:2px dotted var(--coral);
 	font-family:'Iosevka', 'monospace';
+	font-size:1.8em;
 }
 #logo {
-	font-size:75%;
 	position:relative;
-	top:-0.4em;
+	top:-0.35em;
 	color:var(--coral);
 }
 .posts {
@@ -89,15 +83,16 @@ h1 {
 	filter:grayscale(100%);
 }
 .post {
-	max-width:35ch;
+	max-width:37ch;
 	border: 1px dotted var(--coral);
 	border-radius:3px;
 	margin-bottom:1em;
+	font-size:1.1em;
 }
 .postlink {
 	color:var(--text);
 	display:block;
-	padding:1em;
+	padding:.8em .8em 1.4em .8em;
 }
 .pinned {
 	padding-left:1.5em;
@@ -106,7 +101,7 @@ h1 {
 h2 {
 	margin-top:0;
 	font-family:'Iosevka', 'monospace';
-	font-size:14pt;
+	font-size:1.15em;
 }
 a {
 	color:var(--coral);
@@ -116,10 +111,14 @@ a:hover {
 	color:var(--lightcoral);
 }
 .back {
-	font-size:10pt;
+	font-size:0.8em;
 }
 .content {
-	padding-bottom:4em;
+	padding:0.5em 0 4em 0;
+}
+code {
+	font-family:'Iosevka', 'monospace';
+	font-size:1.2em
 }
 .updated {
 	color:grey;
