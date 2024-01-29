@@ -46,11 +46,11 @@ out vca
 Now, every approach has tradeoffs so don&rsquo;t expect to be performing the same way as other languages. I&rsquo;m continuing to develop and hone abstractions in the language, one idea for future is to create &rsquo;toolkits&rsquo; which would frame specific approaches. This would narrow the field of view (the underlying language still available though), yet also enable faster turn over of patterns and ideas.</p>
 <h2 id="does-syntə-have-any-other-tricks-up-its-sleeves">Does Syntə have any other tricks up its sleeves?</h2>
 <p>Having worked extensively with other methods for live-coding I was well aware of some of the pitfalls. So from the beginning I wanted to mitigate or eliminate them entirely.<br>
-One crucial area is sound levels. This is quite a deep topic, as it involves not just physics but psycho-acoustics too. Our ears are very frequency and level dependent and any audio needs to take this into consideration.  Traditionally for recorded music this has been done manually by studio and mastering engineers; however this is computing so we have an opportunity to let the code do most of the heavy-lifting. (no pun intended!)<br>
-The sound engine in Syntə has two principle mechanisms. The <code>mix</code> function reads the most recent oscillator frequency of a listing and sets a level based on the heuristic of approximating pink noise. You can read more about this in the delightful book The Artful Universe by John D. Barrow.<br>
-The second feature is a frequency dependent limiter on the output of the around engine. This has two principal actions. One is to avoid clipping, and the other is to enforce a &lsquo;pink spectrum&rsquo; by reducing levels in proportion to frequency.  If anyone is interested I may write a more in depth post on this topic and the tradeoffs/decisions involved.<br>
-Other considerations included making the syntax friendly eg. by having not just a <code>pow</code> operator, but also a <code>base</code>. Essentially the necklace input and operands of these are just swapped, but it&rsquo;s a small thing that makes things a lot easier.
-Also, playback of samples is kept very flexible but also very simple too:</p>
+One crucial area is sound levels. This is quite a deep topic, as it involves not just physics but psycho-acoustics too. Our ears are very frequency and level dependent and any audio needs to take this into account.  Traditionally for recorded music this has been done manually by studio and mastering engineers; however this is computing so we have an opportunity to let the code do most of the heavy-lifting. (no pun intended!)<br>
+The sound engine in Syntə has two principal mechanisms. The <code>mix</code> function reads the most recent oscillator frequency of a listing and sets a level based on the heuristic of approximating pink noise. You can read more about this in the delightful book The Artful Universe by John D. Barrow.<br>
+The second feature is a frequency dependent limiter on the output of the sound engine. This has two main actions. One is to avoid clipping, and the other is to enforce a &lsquo;pink spectrum&rsquo; by reducing levels in proportion to frequency.  If anyone is interested I may write a more in depth post on this topic and the tradeoffs/decisions involved.<br>
+Other considerations included making the syntax friendly, eg. by having not just a <code>pow</code> operator, but also a <code>base</code>. Essentially the necklace input and operands of these are just swapped, but it&rsquo;s a small thing that makes things a lot easier.
+Also, as mentioned, playback of samples is kept very flexible but also very simple too:</p>
 <blockquote>
 </blockquote>
 <pre><code>in r.wavname
@@ -63,7 +63,7 @@ mix
 <p>Well, probably the biggest leap forward planned for this year is to port to systems other than BSD/Linux. MacOS would probably be the first target. A web port has been explored, but unfortunately Go doesn&rsquo;t play nicely with the WASM audio abstractions, so that has been shelved for now.<br>
 One possibility to consider is making the language strongly typed, which would assist beginners in getting going.<br>
 Another future possibility is implementing MIDI or OSC, this would open up the language and sound engine to be used as an alternative back-end for other sequence based languages, and also to play other instruments. A fun collab would be to combine sequenced midi from another live coder with sounds and patterns from Syntə 😀</p>
-<p>I&rsquo;m actively performing with and learning the language (no one is an expert in it yet!) and so far its been really rewarding. If anything the main challenge is keeping in mind all the possibilities in front of an audience! It&rsquo;s a nice problem to have :)</p>
+<p>I&rsquo;m actively performing with and learning the language (no one is an expert in it yet!) and so far it&rsquo;s been really rewarding. If anything the main challenge is keeping in mind all the possibilities while in front of an audience! It&rsquo;s a nice problem to have :)</p>
 
 	
 </div>
