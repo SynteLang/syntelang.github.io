@@ -43,7 +43,8 @@ out vca
 ...
 </code></pre>
 <p>This snippet produces a signal named <code>vca</code> which can be used in any way, but the name suggests <code>mul vca</code>, which is an amplifier (attenuator in this case). The pulse wave has been shaped by two filters.<br>
-Now, every approach has tradeoffs so don&rsquo;t expect to be performing the same way as other languages. I&rsquo;m continuing to develop and hone abstractions in the language, one idea for future is to create &rsquo;toolkits&rsquo; which would frame specific approaches. This would narrow the field of view (the underlying language still available though), yet also enable faster turn over of patterns and ideas.</p>
+Now, every approach has tradeoffs so don&rsquo;t expect to be performing the same way as other languages. The intention was never to replace anything else, but to add another approach to the ecosystem. A different fruitful path that opens up new options.<br>
+I&rsquo;m continuing to develop and hone abstractions in the language, one idea for future is to create &rsquo;toolkits&rsquo; which would frame specific approaches. This would narrow the field of view (the underlying language still available though), yet also enable faster turn over of patterns and ideas.</p>
 <h2 id="does-syntə-have-any-other-tricks-up-its-sleeves">Does Syntə have any other tricks up its sleeves?</h2>
 <p>Having worked extensively with other methods for live-coding I was well aware of some of the pitfalls. So from the beginning I wanted to mitigate or eliminate them entirely.<br>
 One crucial area is sound levels. This is quite a deep topic, as it involves not just physics but psycho-acoustics too. Our ears are very frequency and level dependent and any audio needs to take this into account.  Traditionally for recorded music this has been done manually by studio and mastering engineers; however this is computing so we have an opportunity to let the code do most of the heavy-lifting. (no pun intended!)<br>
