@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>We ❤ Termux</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#33-05-30-1-2024">back</a>
+<p class="date">30/01/2024</p>
+<h1>We ❤ Termux</h1>
+<div class="content">
+	<p><a href="https://termux.dev/en/"><code>Termux</code></a> is an android app that turns your smartphone into a &lsquo;proper computer&rsquo;, essentially by providing a command line interface. Why is this good? Well two primary use cases are posting new content to your websites, and also a bit of coding too. There are many other things you can do, but I&rsquo;ve found it&rsquo;s a good way to do computing on the move - within the limitation of a touch screen interface of course.</p>
+<p>It&rsquo;s really quite clever what they&rsquo;ve been able to pull off. Of course Android itself is a Linux distribution, so that gives a headstart, but still.<br>
+You can add sessions (more than one active terminal window); change fonts and colour schemes with <code>termux-styling</code>; and of course use the usual tools like apt/pkg, vim, ssh, go, alongside your regular faves ls, cd, mv etc.</p>
+<p>This post itself has been written and posted from <code>Termux</code>, using a bluetooth keyboard (K380). The workflow is something like:</p>
+<blockquote>
+</blockquote>
+<pre><code>cd &lt;project-root-dir&gt;
+hugo new content/newpostname.md
+vim content/newpostname.md
+aspell -c -x content/newpostname.md
+hugo
+cd public/
+git add .
+git commit -m 'commit message'
+git push
+</code></pre>
+<p>Sublime. You can also <code>hugo serve</code> from another session to preview and check everything is to your liking.</p>
+<p>It can also be useful to run scripts to keep track of invoicing, write notes/to-do lists (see <a href="/todo-and-code-bonsai/"><code>todo</code></a>), or generally be a useful mobile option for on-the-go computing. Like publishing blog posts from the top of a bus&hellip;</p>
+<p>No affiliation, just a fan :)</p>
+<p><em>The app is available from F-Droid. Not on the gxxgle app store, but who wants to use that anyway?</em></p>
+
+	
+</div>
+
+
+		<a class="backtop" href="/we-termux/">&uarr; top</a>
+	</div>
+</body>
+</html>
