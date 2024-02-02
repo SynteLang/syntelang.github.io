@@ -54,7 +54,7 @@ body {
 }
 .wrapper {
 	margin: 1.5em calc(10vw - 1em);
-	min-height: 20em;
+	min-height: 80vh;
 	max-width: 70ch;
 }
 .date {
@@ -62,7 +62,6 @@ body {
 	font-family:'Iosevka', 'monospace';
 }
 span.date {
-	margin:-0.5em -0.2em 0 0;
 	font-size:.8em;
 	color:grey;
 }
@@ -82,28 +81,26 @@ h1 {
 	margin:3em 0;
 }
 .pin {
-	margin:0 0 -1em -1.5em;
+	margin:0 0 -1em -2em;
 	color:var(--coral);
 	filter:grayscale(100%);
 }
 .post {
 	max-width:37ch;
-	border: 1px dotted var(--coral);
-	border-radius:3px;
-	margin-bottom:1em;
+	margin-bottom:0.5em;
 	font-size:1.1em;
 }
 .postlink {
-	color:var(--text);
 	display:block;
-	padding:0.9em .8em 1.2em .8em;
+	padding:0.5em 0 1em 0;
+	color:var(--text);
 }
 .pinned {
-	padding-left:1.5em;
-	margin-bottom:1.5em;
+	padding-left:2em;
+	margin-bottom:0.5em;
 }
 h2 {
-	margin:0 0 0.4em 0;
+	margin:0;
 	font-family:'Iosevka', 'monospace';
 	font-size:1.15em;
 }
