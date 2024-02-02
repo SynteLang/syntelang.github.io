@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>No One Writes Code</title>
+      <link>http://syntelang.github.io/no-one-writes-code/</link>
+      <pubDate>Wed, 31 Jan 2024 14:41:55 +0000</pubDate>
+      <guid>http://syntelang.github.io/no-one-writes-code/</guid>
+      <description>Ok, I may be exaggerating &lt;em&gt;a little&lt;/em&gt; there, but hear me out&amp;hellip;</description>
+    </item>
+    <item>
       <title>We ❤ Termux</title>
       <link>http://syntelang.github.io/we-termux/</link>
       <pubDate>Tue, 30 Jan 2024 17:33:18 +0000</pubDate>
