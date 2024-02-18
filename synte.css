@@ -136,6 +136,12 @@ code {
 p.ring {
 	width:max-content;
 	margin:auto;
+	padding:0.5em;
 	font-family:'Iosevka', 'monospace';
 	font-size: 1.2em;
+}
+a.joy {
+	display:inline-block;
+	border-bottom:1px solid #562a44;
+	color:#2d534d;
 }
