@@ -78,7 +78,7 @@ h1 {
 	color:var(--coral);
 }
 .posts {
-	margin:3em 0.75em;
+	margin:3em 0.75em 5em 0.75em;
 	max-width:min(45ch, 99vw - 2em);
 }
 .pin {
@@ -88,7 +88,7 @@ h1 {
 	filter:grayscale(100%);
 }
 .post {
-	margin-bottom:0.5em;
+	margin-bottom:1em;
 	font-size:1.2em;
 }
 .postlink {
@@ -135,13 +135,19 @@ code {
 }
 p.ring {
 	width:max-content;
-	margin:auto;
-	padding:0.5em;
+	margin:0 auto;
+	padding:0.25em;
 	font-family:'Iosevka', 'monospace';
 	font-size: 1.2em;
 }
 a.joy {
 	display:inline-block;
+	padding:0 .1em;
 	border-bottom:1px solid #562a44;
 	color:#2d534d;
+}
+a.retro {
+	color:var(--lightcoral);
+	padding:0 .2em;
+	border-bottom:1px dotted var(--lightcoral);
 }
