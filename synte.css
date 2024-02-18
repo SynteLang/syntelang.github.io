@@ -133,3 +133,9 @@ code {
   color:black;
   background: #010101;
 }
+p.ring {
+	width:max-content;
+	margin:auto;
+	font-family:'Iosevka', 'monospace';
+	font-size: 1.2em;
+}
