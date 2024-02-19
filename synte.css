@@ -88,7 +88,7 @@ h1 {
 	filter:grayscale(100%);
 }
 .post {
-	margin-bottom:1em;
+	margin-bottom:0.5em;
 	font-size:1.2em;
 }
 .postlink {
@@ -97,15 +97,14 @@ h1 {
 	color:var(--text);
 }
 .pinned {
-	margin-bottom:2.25em;
-	padding-bottom:0.25em;
-	border-bottom:2px dotted grey;
 }
 h2 {
-	margin:0;
+	margin:0.3em 0;
 	font-family:'Iosevka', 'monospace';
 	font-size:1.15em;
 	font-weight:500;
+	padding-bottom:0.2em;
+/*	color:var(--coral); */
 }
 .content h2 {
 	margin-top:2em;
