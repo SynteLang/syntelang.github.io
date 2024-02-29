@@ -1,11 +1,16 @@
 /* written by hand, with love */
 :root {
 	--text: #444;
-	/*--coral: #E09090;*/
-	/*--coral: #d87474;*/
+	background-color: #eee;
 	--coral: #cd4747;
 	--lightcoral: #E0A0A0;
 	--compl:#278b8b;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--text: #bbb;
+		background-color: #222;
+	}
 }
 @font-face {
 	font-family:'Iosevka';
@@ -107,7 +112,6 @@ h2 {
 	font-size:1.15em;
 	font-weight:500;
 	padding-bottom:0.2em;
-/*	color:var(--coral); */
 }
 .content h2 {
 	margin-top:2em;
@@ -147,9 +151,4 @@ a.joy {
 	padding:0 .1em;
 	border-bottom:1px solid #562a44;
 	color:#2d534d;
-}
-a.retro {
-	color:var(--lightcoral);
-	padding:0 .2em;
-	border-bottom:1px dotted var(--lightcoral);
 }
