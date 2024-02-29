@@ -89,14 +89,14 @@ h1 {
 }
 .post {
 	margin-bottom:1em;
-	padding:0 0.5em;
+	padding-bottom:0.5em;
 	border:2px dotted lightgrey;
 	border-radius:0.5em;
 	font-size:1.2em;
 }
 .postlink {
 	display:block;
-	padding:0.5em 0 1em 0;
+	padding:0.5em;
 	color:var(--text);
 }
 .pinned {
