@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://syntelang.github.io/the-power-of-go/</loc>
+    <lastmod>2024-03-09T23:09:57+00:00</lastmod>
+  </url><url>
     <loc>http://syntelang.github.io/ifixedit/</loc>
     <lastmod>2024-02-29T00:42:22+00:00</lastmod>
   </url><url>
@@ -14,7 +17,7 @@
     <loc>http://syntelang.github.io/no-one-writes-code/</loc>
     <lastmod>2024-02-03T10:37:13+00:00</lastmod>
   </url><url>
-    <loc>http://syntelang.github.io/we-termux/</loc>
+    <loc>http://syntelang.github.io/we--termux/</loc>
     <lastmod>2024-01-30T18:08:30+00:00</lastmod>
   </url><url>
     <loc>http://syntelang.github.io/tags/pinned/</loc>

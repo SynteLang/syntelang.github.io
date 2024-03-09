@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>The Power of Go</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#46-08-9-3-2024">back</a>
+<p class="date">09/03/2024</p>
+<h1>The Power of Go</h1>
+<div class="content">
+	<p>Let me preface this discussion by saying <em>all this has been said before and better.</em> Why am I bothering? Well really this post is about learning things the hard way, something I am definitely an expert at :)<br>
+But also, it may give some fresh insight to those starting out and wanting to move beyond simple tutorials.</p>
+<p>I recently revisited and overhauled an automation script I use for work. It has been very reliable, at one point it was actually smugly correct about something that I got wrong ha. But at the same time, the code was difficult to modify or even understand! It didn&rsquo;t really need much modification, more simplification, as the generalised features that I thought I needed originally, I rarely (if ever) used.<br>
+The code in question is to keep track of customers and produce PDF invoices. Sadly the repo is not public, as I don&rsquo;t want to publish customer details. Nothing particularly sensitive, but I&rsquo;m sure they wouldn&rsquo;t appreciate me publishing their names and numbers on the internet!<br>
+There was another reason, I should confess, it was all an unholy mess under the hood&hellip;</p>
+<h2 id="mmm-spaghetti-code">Mmm spaghetti code</h2>
+<p>When I first cooked up this automation script, it was about all I could manage.<br>
+I was pleased enough to be able to spit out formatted invoices on demand, with incremented &lsquo;1 of 3&rsquo; fields, current dates, and other such conveniences.<br>
+I am very much one for learning the hard way. To produce this artefact originally I steamed straight into it, grabbing at anything that worked. I knew it was messy and it certainly didn&rsquo;t look like the well manicured topiary you can find in some repo&rsquo;s. The code actually worked well in practice, but had reached the point where I wanted to polish it and add a couple more niceties. A rewrite, famously, is never a good option - plus the &lsquo;business logic&rsquo; was already shaped to my needs like a worn old armchair. So the time had come to refactor it all as much as possible.</p>
+<h2 id="what-i-have-learnt-over-time-the-hard-way">What I have learnt over time (the hard way)</h2>
+<p>When I first started out I thought functions were for avoiding repetition - they&rsquo;re not.  Two main purposes:</p>
+<ul>
+<li>functions mean that code only needs to be changed <em>in one place</em> and</li>
+<li>functions track mutations. What is changing where. This is a crucial &lsquo;side-effect&rsquo; (not in the comp sci sense) and often beneficial in other ways.
+The latter is especially with a plain value pass/return. Which I now prefer over methods. I would even go as far to say only use methods if you want to be able to compose them, or if you need to implement an interface.</li>
+</ul>
+<p>Other &lsquo;discoveries&rsquo;</p>
+<ul>
+<li>Good names are useful. Following a good style uncovers logic. My favourite advice that I have read on this is from this now <a href="https://github.com/Pungyeon/clean-go-article">slightly outdated repo</a>:  variable names should get longer the wider their scope is, and function names should get longer the <em>narrower</em> the scope. Which makes so much sense when you think out it. Of course not everyone agrees - I&rsquo;m looking at you *ahem* Prometheus.</li>
+<li>Tests are revealing - in the writing alone. It makes you look at your functions from the outside in. Although it has to be said they can be a lot of work and often leave a shimmering doubt in your mind of what they will have missed. They&rsquo;re also challenging to implement at the edges of your code - input/output - and that is where the real stuff happens. I think I&rsquo;ve rarely caught a bug in the wild with a test, but that they have nonetheless improved my code and helped me understand it.</li>
+</ul>
+<h2 id="sidebar-so-whats-so-special-about-go">Sidebar: So what&rsquo;s so special about Go?</h2>
+<p>I feel the elephant in the room here is that one of the authors of Go is Ken Thompson! Ok, fanboi alert&hellip; But yeah, B - the precursor to C; erm Unix - the precursor to like everything; and chuck in some UTF-8 without which where would our precious emojis be? 🤪<br>
+The language builds on decades of experience, going all the way back to Algol. Which means that there is a lot that Go does that is understated and quiet. If you let it guide you, it helps you write really clean logic. Often simply writing something more cleanly often uncovers issues that were otherwise hidden.</p>
+<p>A good approach in general is to apply simple principles and see where it gets you. This is what I call inductive living. Let yourself be guided by paying attention to the simple details. This can feel a bit like you&rsquo;re not being determined or focused enough, but it&rsquo;s incredibly effective. Let the Big Picture take care of itself, while you build slowly but surely, brick by brick.</p>
+<p>That said, I&rsquo;m sure Ken would have let everyone run riot with manual memory management if he could have (or perhaps not?) The under-the-hood runtime of Go is probably most useful to enable the snazzy concurrency features. But I&rsquo;m grateful not to have to remember to malloc and free things. It can also be noted that for this  automation script and a lot of Go out there, channels and concurrency were not used once.<br>
+Though they have been incredible for Syntə.</p>
+<h2 id="anyway">Anyway,</h2>
+<p>So I set about a comprehensive revision of this atrocious code. Incrementally moving forward. Preserving - mostly - the logic. Pulling things apart, shaking down others.  But it was a fun, almost relaxing task. I was able to collapse redundant code. The codebase shrank by 25%. All was all laid bare in the process. And in the end I achieved what I set out to - it is now maintainable.<br>
+I can now delve in to tweak things, add little features simply, iron out quirks.  It&rsquo;s still not what I&rsquo;d call polished or rugged, but it&rsquo;s readable.<br>
+Some of the more hairy functions have yet to be cleaned up entirely, and some larger ecumenical decisions are still lurking. But these are now much much more tractable. There is still more learning to be had too. There always is. Which is a good thing.<br>
+Go is not only a great language for writing software, but one that allows you to grow.<br>
+<a href="https://github.com/syntelang/syntelang">Syntə</a> itself has followed a similar trajectory, which is visible in the commits.</p>
+<h2 id="aaand-relax">Aaand relax&hellip;</h2>
+<p>I&rsquo;m pleased to have reached a place where coding is relaxing.<br>
+This doesn&rsquo;t negate <a href="/no-one-writes-code/">my prior post</a> because I&rsquo;ve been refactoring. Which is not the same as writing.<br>
+If I was starting from scratch I would probably spec it in a very simple pseudo code and then translate into Go. Which has given me an idea&hellip; 🤔</p>
+<h2 id="the-backend-shouldnt-lead-the-frontend">The backend shouldn&rsquo;t lead the frontend</h2>
+<p>One thing I did get right and I stand by is avoiding a &lsquo;bumpy&rsquo; user interface - by which I mean what is natural in code does not necessarily present as natural to a human. I see this all the time in the wild. A UI where you have to go one extra step - a button press, a scroll right, or an unnecessary new page load. I hate this and one of the joys of writing my own software on this admittedly small scale, is that I can eliminate it.<br>
+And it&rsquo;s all about the simple joys of life :)</p>
+
+	
+</div>
+
+
+		<a href="/the-power-of-go/">&uarr; top</a>
+	</div>
+</body>
+</html>

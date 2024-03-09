@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>The Power of Go</title>
+      <link>http://syntelang.github.io/the-power-of-go/</link>
+      <pubDate>Sat, 09 Mar 2024 20:46:39 +0000</pubDate>
+      <guid>http://syntelang.github.io/the-power-of-go/</guid>
+      <description>Let me preface this discussion by saying &lt;em&gt;all this has been said before and better.&lt;/em&gt; Why am I bothering? Well really this post is about learning things the hard way, something I am definitely an expert at&amp;hellip;</description>
+    </item>
+    <item>
       <title>Ifix(ed)it</title>
       <link>http://syntelang.github.io/ifixedit/</link>
       <pubDate>Wed, 28 Feb 2024 22:21:04 +0000</pubDate>
@@ -37,9 +44,9 @@
     </item>
     <item>
       <title>We ❤ Termux</title>
-      <link>http://syntelang.github.io/we-termux/</link>
+      <link>http://syntelang.github.io/we--termux/</link>
       <pubDate>Tue, 30 Jan 2024 17:33:18 +0000</pubDate>
-      <guid>http://syntelang.github.io/we-termux/</guid>
+      <guid>http://syntelang.github.io/we--termux/</guid>
       <description>Termux is an android app that turns your smartphone into&amp;hellip;</description>
     </item>
     <item>
