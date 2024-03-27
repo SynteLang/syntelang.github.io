@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Synte Update 1</title>
+      <link>http://syntelang.github.io/synte-update-1/</link>
+      <pubDate>Wed, 27 Mar 2024 15:58:33 +0000</pubDate>
+      <guid>http://syntelang.github.io/synte-update-1/</guid>
+      <description>I though I&amp;rsquo;d take a moment to outline the progress of the project and upcoming developments&amp;hellip;</description>
+    </item>
+    <item>
       <title>The Power of Go</title>
       <link>http://syntelang.github.io/the-power-of-go/</link>
       <pubDate>Sat, 09 Mar 2024 20:46:39 +0000</pubDate>

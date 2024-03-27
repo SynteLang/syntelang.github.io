@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>Synte Update 1</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#58-03-27-3-2024">back</a>
+<p class="date">27/03/2024</p>
+<h1>Synte Update 1</h1>
+<div class="content">
+	<p>I thought I&rsquo;d take a moment to outline the progress of the project and upcoming developments.</p>
+<p>Syntə has a new limiter! I&rsquo;ll do a more fully featured write up of this in a separate post.<br>
+Briefly, the new design is what was originally intended, has been better characterised and works well so far. It&rsquo;s in the <a href="%22https://github.com/syntelang/syntelang/synte.go%22">repo</a> if you want to take a look.</p>
+<p>Talking of which, at some point soon I&rsquo;m planning to rename the repository to &ldquo;synte&rdquo; (as opposed to syntelang). This is one part of the roadmap to take us to&hellip;</p>
+<h2 id="porting">&hellip;porting</h2>
+<p>Yes, it&rsquo;s finally almost time to port Syntə to the mac platform. Which will involve the following stages:</p>
+<ol>
+<li>housekeeping - reorganising the project directory, mainly for producing binaries, but the sound engine and some types might become separate packages too.</li>
+<li>create a simplified build/install process for the current form</li>
+<li>integrating portaudio bindings</li>
+<li>optionally setup a github flow to produce binaries</li>
+<li>obtain a mac developer certificate and sign the binary</li>
+<li>testing - beta testers required!</li>
+</ol>
+<p>I have scheduled work on this to commence sometime in April(ish) and will do some kind of announcement if it all works out.</p>
+<p>In preparation I have been working on getting the figurative house in order. Since I  overhauled the transfer data structures there have been a couple of issues that I&rsquo;ve been ironing out. I&rsquo;ve recently fixed a problem with the panic/restart feature which managed to escape testing. You can see more on this in commit fc7f1f5.<br>
+Verbose mode was also broken, now fixed.   Also other fixes and corrections such as the updated pause logic, which wasn&rsquo;t properly finished in the first place, oops.</p>
+<h2 id="testing-testing">testing, testing</h2>
+<p>Evidently a tighter testing regime is required! Testing audio output is an intrinsically intractable problem, for end-to-end at least, as it&rsquo;s not straightforward to programmatically determine the effective operation of the sound engine except by using one&rsquo;s ears.<br>
+Up to now, a few meagre unit tests and a suite of listings compiled from the readme were all that stood in the way of bugs being let out into the wild, on a semi-automated basis at least. I&rsquo;ve found the most effective way to uncover problems to date is just to indulge in &lsquo;human fuzzing&rsquo; jam sessions, I seem to have an un-erring ability to go off-piste and discover all manner of undocumented behaviour!<br>
+The next step on this is to write more test scripts comprising of listings using the new <code>wait</code> command to simulate human input. This hasn&rsquo;t been pushed yet, and will likely remain something of an easter egg (very seasonal!) as it&rsquo;s not intended for usual use.<br>
+Previously I had split out the main loop into a run function, so these tests can be incorporated into the &lsquo;synte_test.go&rsquo; tests, but they may still have to be listened to to ascertain all is well. Any suggestions on testing will be happily received.</p>
+<h2 id="re-factor">re: factor</h2>
+<p>I&rsquo;ve also been slowly continuing the refactoring work that was begun in January. Shorter and more readable functions will definitely aid testing. The old code worked surprisingly well given what it looked like, but I&rsquo;ve gained some efficiency due to less thread-locking mainly and overall more slick operation.</p>
+<p>One other thing that is a bit of an experiment - the main CLI/UI has been stripped down in favour of a more conventional terminal style where the flow of commands is displayed, as opposed to the pseudo ncurses style it had before.<br>
+I decided that until I do a proper implementation using tcell, it might as well be as basic as possible. The info display now shows the soundcard bit width and sample rate.</p>
+<p>The readme also needs an update, which will probably wait until everything is settled.</p>
+<h2 id="nerdtube">nerdtube</h2>
+<p>Once these changes are complete and before I start work on porting, I should really do an update for the youtube channel, which has been languishing in obscurity for some time.
+This update would include an introduction to the new sync paradigm from last year, as well as detailing how the sound engine now degrades gracefully on overload.</p>
+<p>Another scheduled video for the &rsquo;tubes is a general introduction aimed at live-coders specifically, which would accompany a TOPLAP blog post kindly suggested by <a href="%22https://social.toplap.org/@highharmonics%22">@HighHarmonics</a>. I think it would make sense to wait on this until a succesful porting, given that the work happens in a reasonable time-frame&hellip;</p>
+<p>Watch this space!</p>
+
+	
+</div>
+
+
+		<a href="/synte-update-1/">&uarr; top</a>
+	</div>
+</body>
+</html>
