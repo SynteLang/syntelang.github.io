@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://syntelang.github.io/emom/</loc>
+    <lastmod>2024-03-30T12:43:57+00:00</lastmod>
+  </url><url>
     <loc>http://syntelang.github.io/synte-update-1/</loc>
-    <lastmod>2024-03-27T17:20:04+00:00</lastmod>
+    <lastmod>2024-03-30T12:43:19+00:00</lastmod>
   </url><url>
     <loc>http://syntelang.github.io/the-power-of-go/</loc>
     <lastmod>2024-03-09T23:35:14+00:00</lastmod>
