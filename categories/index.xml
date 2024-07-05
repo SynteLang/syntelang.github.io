@@ -4,7 +4,7 @@
     <title>Categories on Synte BLog</title>
     <link>http://syntelang.github.io/categories/</link>
     <description>Recent content in Categories on Synte BLog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>

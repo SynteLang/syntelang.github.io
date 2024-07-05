@@ -152,3 +152,8 @@ a.joy {
 	border-bottom:1px solid #562a44;
 	color:#2d534d;
 }
+
+img {
+	width: 90%;
+	margin: 2em 1em;
+}
