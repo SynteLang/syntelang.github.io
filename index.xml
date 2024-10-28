@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Meetup</title>
+      <link>http://syntelang.github.io/meetup/</link>
+      <pubDate>Mon, 28 Oct 2024 20:34:03 +0000</pubDate>
+      <guid>http://syntelang.github.io/meetup/</guid>
+      <description>Next Meetup!&#xA;26th November 2024&#xA;The Sekforde (nearest station: Farringdon)&#xA;From 6:30pm to 8:30pm Arrive from 6pm&#xA;Bring a laptop if you can!</description>
+    </item>
+    <item>
       <title>Move Slowly and Break Things</title>
       <link>http://syntelang.github.io/move-slowly-and-break-things/</link>
       <pubDate>Fri, 05 Jul 2024 10:37:26 +0000</pubDate>
