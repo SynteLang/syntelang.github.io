@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Algoraving Mad</title>
+      <link>http://syntelang.github.io/algoraving-mad/</link>
+      <pubDate>Fri, 13 Dec 2024 20:09:58 +0000</pubDate>
+      <guid>http://syntelang.github.io/algoraving-mad/</guid>
+      <description>End of year review, plus some other bits and bobs&amp;hellip;</description>
+    </item>
+    <item>
       <title>Meetup</title>
       <link>http://syntelang.github.io/meetup/</link>
       <pubDate>Mon, 28 Oct 2024 20:34:03 +0000</pubDate>
