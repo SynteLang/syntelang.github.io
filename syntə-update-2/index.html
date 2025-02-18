@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>Syntə Update 2</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	<meta name="description" content="live, coding" /> 
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#53-11-18-2-2025">back</a>
+<p class="date">18/02/2025</p>
+<h1>Syntə Update 2</h1>
+<div class="content">
+	<p>Ok, so it&rsquo;s been a hot minute since I said anything much about Syntə on here. Almost a year since the last update in fact - time flies when you&rsquo;re having fun - and I&rsquo;ve been having fun indeed 🥳</p>
+<h2 id="so-where-are-we">So where are we?</h2>
+<p>Well there hasn&rsquo;t been a whole lot of visible progress, but a quite a lot of tweaking and fixing under the hood. The output section has undergone a series of iterations and revisions. I think I&rsquo;ve finally settled on something that works well for live performance - not overly restrictive but a safe operating zone for loud soundsystems.<br>
+I built up a hefty backlog of changes of over a few months which I really wanted to get committed, my intention was to use <code>lazygit</code> to break it up into atomic commits, however in the end I gave up after a bit of code wrangling and shoved most of it into a weighty franken-push.  Not ideal, but at least it is backed up on MS (sad face) servers now.<br>
+Each listing now has it&rsquo;s own frequency dependent limiter, which isn&rsquo;t really that expensive in terms of compute and well worth it to handle things like excessive feedback and generally prevent things from ducking the rest of the mix out.<br>
+I also removed a few things that seemed a good idea at the time but were more of a hindrance, for example the mixfactor which was conterproductive in hindsight. Generally individual listings can be assumed to occupy different frequency ranges which means a straightforward sum is the best approach rather than trying to get snazzy with averaging levels between them. All it resulted in was reducing bass - and as bottom-end is a core goal of Syntə 😃 that was a very unwelcome effect. Not trying to be too clever is probably one of my biggest lessons of my time coding.<br>
+Another leap forward has been offering more delay-line possibilities per-listing. There are now four numbered <code>buff</code> operators which can be used to make lush choruses, and all-pass filters for reverb. &lsquo;Production&rsquo; nicenesss all round. I feel like I can now make &lsquo;real&rsquo; music - or I should say - I now feel like I can create the atmospheres that I wanted. Which is great. You can hear some of my efforts on my <a href="https://syntel8.bandcamp.com">bandcamp page</a>.</p>
+<p>I have fallen behind a bit with documentation. The README could do with an overhaul (it&rsquo;s on the lengthy to-do list!) - especially as right now it&rsquo;s hard to remember what exactly has changed. Oops.</p>
+<h1 id="ok-so-whats-next">ok, so what&rsquo;s next?</h1>
+<p>Well, I&rsquo;m not exactly sure really. My thinking has been revolving on this. At one point last year I contemplated shelving my porting efforts. However, I recently made a mock-up of how <code>portaudio</code> woudld work within the sound engine and magically it does indeed to what you&rsquo;d expect without too much hassle!  So I&rsquo;m going to try rolling that in soon. It would be nice to have a portable program that can be used by sensible normal people at workshops without having to install Linux first&hellip; (I wouldn&rsquo;t even dream of attempting a FreeBSD install en-mass ha 🤭)
+Plus, although Strudel is a great highly accessible and collaborative environment that is really fun, I find on my devices it glitches out quickly which gets frustrating. Plus I haven&rsquo;t taken the time to learn it properly, which would help&hellip;<br>
+That said, another thing I should do is some more profiling of the Syntə sound engine, I managed to max it out last night with only 12 listings which it usually copes fine with. I do find it downgrades pretty gracefully though, it can even be a nice grainy effect for &lsquo;degradation tape&rsquo; style effects.<br>
+This could also be because I upgraded my OS version recently and some settings changed.</p>
+<p>Anyway, what else? Well I still have quite a bit of code cleanup to do, including clearing out unused features like <code>.solo</code>, integrating <code>m+</code> with <code>solo</code>, overhauling the functions parsing.</p>
+<h2 id="the-future-of-syntə">The future of Syntə</h2>
+<p>Last year I had settled to a good point where it was acting as a great driver for my own personal inspiration and creation. In fact I couldn&rsquo;t be more pleased with how it has helped my get my groove back and fall in love with making music and developing as an artistic again. I&rsquo;m really looking forward to what I can do with it over the coming months and years.<br>
+What about you lot? Well, at the last meetup there was a tentative suggestion of doing a workshop (part of a series on various topics). I do love doing workshops, however it&rsquo;s a lot of time and prep to do. I&rsquo;m wondering if the Pattern Club model of occassion paid workshops would be good? Like would people be up for paying £10-15 for an introductory workshop? Let me know.</p>
+<p>Ok, I think that&rsquo;s all for now.
+Really excited for the scene this year!</p>
+<p>Over and out :)</p>
+
+	
+</div>
+
+
+		<a href="/synt%C9%99-update-2/">&uarr; top</a>
+	</div>
+</body>
+</html>

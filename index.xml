@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Syntə Update 2</title>
+      <link>http://syntelang.github.io/synt%C9%99-update-2/</link>
+      <pubDate>Tue, 18 Feb 2025 11:53:04 +0000</pubDate>
+      <guid>http://syntelang.github.io/synt%C9%99-update-2/</guid>
+      <description>Ok, so it&amp;rsquo;s been a hot minute since I said anything much about Syntə on here. Almost a year since the last update in fact - time flies when you&amp;rsquo;re having fun - and I&amp;rsquo;ve been having fun indeed 🥳&#xA;So where are we? Well there hasn&amp;rsquo;t been a whole lot of visible progress, but a quite a lot of tweaking and fixing under the hood. The output section has undergone a series of iterations and revisions.</description>
+    </item>
+    <item>
       <title>2025 Here We Go!</title>
       <link>http://syntelang.github.io/2025-here-we-go/</link>
       <pubDate>Sat, 01 Feb 2025 13:50:48 +0000</pubDate>
