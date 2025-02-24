@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>Mastodon URL Cards</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	<meta name="description" content="A little how-to micro post :)" />
+	<meta property="og:url" content="https://syntelang.github.io/">
+    <meta property="og:image" content="https://syntelang.github.io/logo.png">
+    <meta property="og:site_name" content="Syntə Blog">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#10-03-24-2-2025">back</a>
+<p class="date">24/02/2025</p>
+<h1>Mastodon URL Cards</h1>
+<div class="content">
+	<p>When you post a link on mastodon (the generic name for a federated form of interoperable social media) it will often display a little box containing an image and formatted description of the url.<br>
+Like this:<br>
+<img src="/mastodon-before.png" alt="Example mastodon post"></p>
+<p>But that looks a bit plain and boring, right?
+Well today I decided to jazz up the links that I post from this blog.<br>
+To begin, I searched &ldquo;mastodon url card link&rdquo;, and found this <a href="https://blog.rac.me.uk/2023/09/25/how-mastodon-handles-images-and-web-previews/">blog post</a> with a guide.<br>
+I chose to use html &lt;meta description&gt; tags, which I put in the &lt;head&gt; part of my website source:</p>
+<blockquote>
+</blockquote>
+<pre><code>&lt;meta property=&quot;og:url&quot; content=&quot;https://syntelang.github.io/&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://syntelang.github.io/logo.png&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;Syntə Blog&quot;&gt;
+</code></pre>
+<p>You&rsquo;ll need to change the links (urls after content=&quot;) to ones relevant to your site of course :)<br>
+I then added the image named logo.png to the root directory of my website by adding it to the <code>static/</code> directory with my <code>hugo</code> tree.<br>
+<a href="https://gohugo.io"><code>hugo</code></a> is the static site generator I use to combine a set of templates with posts written in markdown format to create the website before uploading it all. To add the meta tags above I placed them in the <code>layouts/_default/baseof.html</code> template (yours might be different).</p>
+<p>To make the image, I simply took a cropped (and zoomed in) screenshot of part of the website and them renamed it to <code>logo.png</code>. &gt;</p>
+<p>Now when I post links to this website it looks like this:</p>
+<p><img src="" alt="loading&hellip;"></p>
+<h2 id="success">Success!</h2>
+
+	
+</div>
+
+
+		<a href="/mastodon-url-cards/">&uarr; top</a>
+	</div>
+</body>
+</html>
