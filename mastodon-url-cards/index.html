@@ -7,7 +7,7 @@
 	<title>Mastodon URL Cards</title>
 	<link rel="stylesheet" type="text/css" href="/synte.css">
 	<meta name="description" content="A little how-to micro post :)" />
-	<meta property="og:url" content="https://syntelang.github.io/">
+	<meta property="og:url" content="http://syntelang.github.io/mastodon-url-cards/">
     <meta property="og:image" content="https://syntelang.github.io/logo.png">
     <meta property="og:site_name" content="Syntə Blog">
 	
@@ -48,6 +48,10 @@ I then added the image named logo.png to the root directory of my website by add
 <p>Now when I post links to this website it looks like this:</p>
 <p><img src="/mastodon-after.png" alt="what the url card looks lile now"></p>
 <h2 id="success">Success!</h2>
+<hr>
+<h2 id="update">update:</h2>
+<p>the url in the &lsquo;og:url&rsquo; should be the one for the blog post. I realised this later on when I clicked on the mastodon card and it took me to the blog front page.<br>
+To correct this with <code>hugo</code> I replaced the url with <code>{{ .Permalink }}</code> in the template 😊</p>
 
 	
 </div>
