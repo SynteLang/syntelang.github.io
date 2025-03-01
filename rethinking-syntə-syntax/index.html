@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
 	<meta charset= "utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="A blog by developer of the Synte live coding language">
 	<title>Rethinking Syntə Syntax</title>
 	<link rel="stylesheet" type="text/css" href="/synte.css">
 	<meta name="description" content="Is the syntax of Syntə friendly?" />
-	<meta property="og:url" content="http://localhost:1313/rethinking-synt%C9%99-syntax/">
+	<meta property="og:url" content="http://syntelang.github.io/rethinking-synt%C9%99-syntax/">
     <meta property="og:image" content="https://syntelang.github.io/logo.jpg">
     <meta property="og:site_name" content="Syntə Blog">
 	
@@ -19,6 +19,7 @@
 		<a class="rss" href="/index.xml">RSS</a>
 		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
 		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="https://syntel8.bandcamp.com">🎶</a>
 		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
 	</div>
 	<div class=wrapper>
@@ -45,7 +46,7 @@ Well, I should stop doing that, but could we help out by easing the process of w
 </blockquote>
 <p>What would that look like in Syntə?</p>
 <blockquote>
-<p><code>/b 1,0 lt 0.5 bd out m /b 0,0.5 lt 0.5 sd + m mix</code></p>
+<p><code>/b 1,0 lt 0.5 bd out m /b 1,0.5 lt 0.5 sn + m mix</code></p>
 </blockquote>
 <p>Well, that looks quite verbose in comparison and a lot less friendly. But there is some low hanging fruit here.<br>
 (side note: you can place commas to differentiate the operator/operand pairs, but that&rsquo;s not essential)<br>
@@ -58,16 +59,16 @@ The repeated <code>lt 0.5</code> doesn&rsquo;t seem to be doing much. The <code>
 <p>No. We don&rsquo;t need to include both sounds in a single listing, so we can also skip the need to sum (add) them together. Our code now looks like this:</p>
 <blockquote>
 <p><code>/s 1,0 bd mix</code><br>
-<code>/s 0,0.5 sd mix</code></p>
+<code>/s 1,0.5 sn mix</code></p>
 </blockquote>
-<p>That&rsquo;s much better. The mix now stands out a bit, anything we can do about that? Let&rsquo;s define another function that is really just an alias:</p>
+<p>That&rsquo;s much better. And now the samples are automatically mixed separately, resulting in a better balance. The mix now stands out a bit, anything we can do about that? Let&rsquo;s define another function that is really just an alias:</p>
 <blockquote>
 <p><code>[ ; mix ]</code></p>
 </blockquote>
 <p>Now we have:</p>
 <blockquote>
 <p><code>/s 1,0 bd ;</code><br>
-<code>/s 0,0.5 sd ;</code></p>
+<code>/s 1,0.5 sn ;</code></p>
 </blockquote>
 <p>I&rsquo;m not sure how pretty that looks, but it&rsquo;s succinct and will be familiar to those who come from C-like languages (which are many). Although, it kinda disguises what <code>mix</code> is doing - setting the level before sending to output to be combined with other listings - which could be misleading. And also one has to remember the space in between the previous operation and the semicolon, something that is not a feature in <em>any</em> language that I know of.</p>
 <h2 id="cheating">Cheating</h2>
@@ -92,7 +93,7 @@ Namely,</p>
 I&rsquo;ve added the arguments in the above example, apols for any confusion.</p>
 <p>We can go further and add a bit of movement to the hi-hat like so:</p>
 <blockquote>
-<p><code>/b 1,0.75 lt 1/4 out t</code><br>
+<p><code>/b 1,0.75 lt 1/4 range 35ms,350ms out t</code><br>
 <code>/s 4,0.5 hh t ;</code></p>
 </blockquote>
 <h2 id="sidebar">Sidebar:</h2>
@@ -115,8 +116,8 @@ We could add an alternative which does accept input, making things simpler for m
 <hr>
 <h2 id="addendum">Addendum</h2>
 <p>What have we done here? Did we really need to think about another language?<br>
-What we&rsquo;ve done is: <em>cast across</em> to something from another person&rsquo;s head. That helps us take us out of our own heads.<br>
-We could have equally tried an étude (a term I learnt recently from <a href="https://social.toplap.org/@trampbunny">trampbunny</a>) or something else. Anything to freshen up our state of mind and gain a new perspective 🙂</p>
+What we&rsquo;ve done is: <em>cast across</em> to something from another person&rsquo;s head. That helps us take us out of our own heads. We haven&rsquo;t needed to copy, and tbh I&rsquo;m not very impressed with the beat we made. But we&rsquo;ve made some small and important steps to maoe live coding easier.</p>
+<p>We could have equally tried an étude (a term I learnt recently from <a href="https://social.toplap.org/@trampbunny">trampbunny</a>) or something else.   Anything to freshen up our state of mind and gain a new perspective 🙂</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
