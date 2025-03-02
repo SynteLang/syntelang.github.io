@@ -1,6 +1,7 @@
 /* written by hand, with love */
 :root {
 	--text: #444;
+	--border: #999;
 	background-color: #eee;
 	--coral: #c43636;
 	--lightcoral: #E0A0A0;
@@ -9,6 +10,7 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--text: #bbb;
+		--border: #777;
 		background-color: #222;
 	}
 }
@@ -94,9 +96,13 @@ h1 {
 }
 .post {
 	margin-bottom:2em;
-	border:2px dotted #aaa;
+	padding: 0 0.2em;
+	border:2px dotted var(--border);
 	border-radius:0.5em;
-	font-size:1.2em;
+	font-size:1.15em;
+}
+.summary {
+	padding: 0 0.5em;
 }
 .postlink {
 	display:block;
