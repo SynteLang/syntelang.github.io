@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>I Made a Music</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	<meta name="description" content="So, I&#39;ve been uploading tracks... Here&#39;s how that happened" />
+	<meta property="og:url" content="http://syntelang.github.io/i-made-a-music/">
+    <meta property="og:image" content="https://syntelang.github.io/logo.jpg">
+    <meta property="og:site_name" content="Syntə Blog">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="https://syntel8.bandcamp.com">🎶</a>
+		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#44-08-3-3-2025">back</a>
+<p class="date">03/03/2025</p>
+<h1>I Made a Music</h1>
+<div class="content">
+	<h2 id="ok-so-heres-what-happened">ok, so here&rsquo;s what happened</h2>
+<p>I had been sharing snippets of audio with friends as mp3 files.</p>
+<p>My recording process is this -<br>
+In Syntə:</p>
+<blockquote>
+<p><code>record name_of_wav</code></p>
+</blockquote>
+<p>Then once I have finished the session and quit, Syntə drops a wav into the <code>audio-recordings</code> directory.</p>
+<p>This is an undocumented feature, which is because it isn&rsquo;t rigorously tested and the wav encoding is pretty janky. I chopped the header (an array of bytes) out of a wav and that just gets slapped on to what is recorded (which has been written by the sound engine as a series of little-endian bytes - which simply means the bytes (8-bit chunks of data) are reversed in order for each 32-bit integer). Don&rsquo;t worry if that all sounds a bit intense, trust me it&rsquo;s just jargon - no more complicated than the numbers you started writing down in primary school 😊</p>
+<p>So, anyway. After that, I can convert the wav file to an mp3 file using <code>audacity</code> (which I&rsquo;m trying to find a replacement for). I usually also boost the output by about 4dB with a limiter too.<br>
+I <em>could</em> add a secondary brickwall limiter to the output section of the sound engine. But it&rsquo;s not essential and tbh I don&rsquo;t feel I&rsquo;m quite good enough at designing compressors yet - after only nearly two decades of trying&hellip;<br>
+And really, I&rsquo;m quite proud that Syntə can spit out lovely recordings as-is :)</p>
+<h2 id="and-then-what">and then what</h2>
+<p>So there I was sharing these snippets about. But after a while it became a bit inconvenient. That&rsquo;s when I thought about uploading them somewhere, so I could just send a link instead.<br>
+I&rsquo;d heard a lot about bandcamp, it seemed like a popular platform. I had reservations due to it being sold twice and the potential for enshittification. Since taking the leap I was reassured by the Not A Diving Podcast episode which interviewed someone from the site. Surprisingly enough, for a smaller player (compared to say, spotify) bandcamp has disbursed over 1.4 billion to artists so far. So it&rsquo;s quite a healthy business.<br>
+They also seem to have retained a consistent ethos.<br>
+There are alternatives, like faircamp, which I may try in future. I also <em>might</em> be releasing some ambient material on a friends new independent label 🤞</p>
+<h2 id="complications">complications</h2>
+<p>I have actually been quite reticent about doing recordings over the past 18 months.<br>
+It always feels that once something is recorded its then set in stone - frozen, ossified.<br>
+And that&rsquo;s still largely the case, it&rsquo;s hard to go back to something once you&rsquo;ve listened to it a few times. And like the egomaniac I am, I usually do listen to my own tracks a lot. But also, I made the music that I like, so why wouldn&rsquo;t I want to listen to it? Like, I eat my own cooking daily, so?<br>
+It&rsquo;s also handy to have snapshots to remind myself what I&rsquo;ve been up to, carry forward inspiration etc. Often I wonder how I actually did that<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<h2 id="music">music:</h2>
+<blockquote>
+<p>I feel like something not talked about much within live coding - but something I want to be very open about - I&rsquo;m making music. I&rsquo;ve always loved it. It&rsquo;s always had a profound effect on me. I&rsquo;m about experiences and expressions of joy, wonder, passion. <a href="https://pastagang.cc/blog/should-i-write-a-blog-post">Energy.</a></p>
+</blockquote>
+<h2 id="so">So,</h2>
+<p>once I had gotten over this a bit, and for the other reasons above, I set up a bandcamp page (<a href="https://syntel8.bandcamp.com">here</a>). There&rsquo;s a link to to it at the top of this website too, by clicking on the musical notes emoji.</p>
+<p>And I&rsquo;m really glad I did.</p>
+<p>Then something happened.</p>
+<p>Someone actually bought my music! I was so pleased, I was beaming from ear to ear for days. I&rsquo;m an actual music artist now!</p>
+<p>Yay!</p>
+<p>But anyway, I&rsquo;m going to keep recording and uploading. Syntə is doing a great job. No mixing, no processing necessary. Sure, they could maybe do with a little more finesse. But my favourite music is always somewhere between rawness and honed craft. Too &lsquo;well produced&rsquo; and something is lost. Judging that boundary will probably be my life&rsquo;s work as an artist.</p>
+<h2 id="future">future</h2>
+<p>One of my friends complained that bandcamp is not easy to use, and to be fair, they have a point. I mean that doesn&rsquo;t stop people spending four grand<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> on it like someone else I know. But just simple things like it&rsquo;s not immediately obvious that you need to click on the squares to get to the music, or that the artist bio is absent from the landing page. Still, it&rsquo;s pretty good though.<br>
+My friend suggested posting on youtube and adding a koffee link, which I might do in future. I have a extremely neglected <a href="https://www.youtube.com/channel/UCRj9_B6P9T0bQSwCL3yOkyw">channel</a> I can use already.</p>
+<p>:)</p>
+<p>Thanks for reading my ramblings x</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I have a theory about music - that what&rsquo;s important is magic - the illusion. If you can hear something and know exactly how or what they did there&rsquo;s nothing interesting. A lot of my favourite tracks have the &lsquo;how the actual did they do that??&rsquo; effect. So it&rsquo;s an encouraging sign to feel that to an extent about my own output :)&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>A grand is Cockney rhyming slang for a thousand pounds&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+	
+</div>
+
+
+		<a href="/i-made-a-music/">&uarr; top</a>
+	</div>
+</body>
+</html>
