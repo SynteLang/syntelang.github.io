@@ -42,65 +42,54 @@ Well, I should stop doing that, but could we help out by easing the process of w
 <h2 id="using-strudel-as-a-reference-point">Using Strudel as a reference point</h2>
 <p>A really simple Strudel pattern is:</p>
 <blockquote>
-<p><code>$: s(&quot;bd sn&quot;)</code></p>
-</blockquote>
+<p><code>$: s(&quot;bd sn&quot;)</code></p></blockquote>
 <p>What would that look like in Syntə?</p>
 <blockquote>
-<p><code>/b 1,0 lt 0.5 bd out m /b 1,0.5 lt 0.5 sn + m mix</code></p>
-</blockquote>
+<p><code>/b 1,0 lt 0.5 bd out m /b 1,0.5 lt 0.5 sn + m mix</code></p></blockquote>
 <p>Well, that looks quite verbose in comparison and a lot less friendly. But there is some low hanging fruit here.<br>
 (side note: you can place commas to differentiate the operator/operand pairs, but that&rsquo;s not essential)<br>
 The repeated <code>lt 0.5</code> doesn&rsquo;t seem to be doing much. The <code>0.5</code> in particular is fairly arbitrary, and neither convey much functional information. We can define a function to wrap this away:</p>
 <blockquote>
-<p><code>[ /s, /b @,@1, lt 0.5, ]</code></p>
-</blockquote>
+<p><code>[ /s, /b @,@1, lt 0.5, ]</code></p></blockquote>
 <p>(commas included this time, note - function arguments always require commas but no spaces)</p>
 <h2 id="do-we-need-to-stop-there">Do we need to stop there?</h2>
 <p>No. We don&rsquo;t need to include both sounds in a single listing, so we can also skip the need to sum (add) them together. Our code now looks like this:</p>
 <blockquote>
 <p><code>/s 1,0 bd mix</code><br>
-<code>/s 1,0.5 sn mix</code></p>
-</blockquote>
+<code>/s 1,0.5 sn mix</code></p></blockquote>
 <p>That&rsquo;s much better. And now the samples are automatically mixed separately, resulting in a better balance. The mix now stands out a bit, anything we can do about that? Let&rsquo;s define another function that is really just an alias:</p>
 <blockquote>
-<p><code>[ ; mix ]</code></p>
-</blockquote>
+<p><code>[ ; mix ]</code></p></blockquote>
 <p>Now we have:</p>
 <blockquote>
 <p><code>/s 1,0 bd ;</code><br>
-<code>/s 1,0.5 sn ;</code></p>
-</blockquote>
+<code>/s 1,0.5 sn ;</code></p></blockquote>
 <p>I&rsquo;m not sure how pretty that looks, but it&rsquo;s succinct and will be familiar to those who come from C-like languages (which are many). Although, it kinda disguises what <code>mix</code> is doing - setting the level before sending to output to be combined with other listings - which could be misleading. And also one has to remember the space in between the previous operation and the semicolon, something that is not a feature in <em>any</em> language that I know of.</p>
 <h2 id="cheating">Cheating</h2>
 <p>We&rsquo;ve actually cheated a bit here, because the above listings rely on there being a time-base phasor already extant.<br>
 Namely,</p>
 <blockquote>
-<p><code>in 120/4bpm osc .out sync</code></p>
-</blockquote>
+<p><code>in 120/4bpm osc .out sync</code></p></blockquote>
 <p>But no problem, we could wrap as: <code>[ cpm, in @ / 4 osc .out sync ]</code> in a cheeky nod to Strudel. Thus we can precede our listings once with <code>cpm 120bpm</code>.</p>
 <h2 id="movin-on">Movin&rsquo; on</h2>
 <p>Let&rsquo;s move onto something a bit less trivial. From the Strudel <a href="https://strudel.cc/workshop/first-sounds/">docs</a> here&rsquo;s a simple house beat:</p>
 <blockquote>
-<p><code>s(&quot;bd*4, [~ sn]*2, [~ hh*4]&quot;)</code></p>
-</blockquote>
+<p><code>s(&quot;bd*4, [~ sn]*2, [~ hh*4]&quot;)</code></p></blockquote>
 <p>After the steps above, now in Syntə we have:</p>
 <blockquote>
 <p><code>/s 4,0 bd 1 ;</code><br>
 <code>/s 2,0.5 sn 35ms ;</code><br>
-<code>/s 4,0.5 hh 35ms ;</code></p>
-</blockquote>
+<code>/s 4,0.5 hh 35ms ;</code></p></blockquote>
 <p>Oh yes, I forgot - more misinformation! The above examples won&rsquo;t work because <code>bd</code>, <code>sn</code> and <code>hh</code> require an argument (I added that for a bit of flexibility when I made those functions.) And bear in mind that the innards of them may change over time if I rip them out and replace to create a fresh toolkit. In fact, a lot of the language could change under your feet, although to be fair it&rsquo;s been very stable to date.<br>
 I&rsquo;ve added the arguments in the above example, apols for any confusion.</p>
 <p>We can go further and add a bit of movement to the hi-hat like so:</p>
 <blockquote>
 <p><code>/b 1,0.75 lt 1/4 range 35ms,350ms out t</code><br>
-<code>/s 4,0.5 hh t ;</code></p>
-</blockquote>
+<code>/s 4,0.5 hh t ;</code></p></blockquote>
 <h2 id="sidebar">Sidebar:</h2>
 <blockquote>
 <p>For those who are unfamiliar - which is like basically everyone on the planet 🤭 - we should say a quick bit about functions. Everything in Syntə is a series of operations, but some things are functions. Like <code>osc</code> for example. This means it is a series of operations wrapped up and given a name. Functions can have up to three arguments (parameters). They are made by typing <code>[ name-of-new-function, ... some operators here... use the @ to show where the first argument will be used ... @1 etc ]</code>. For illustration, here is how you would define <code>osc</code>:<br>
-<code>[ osc, out ^freq, + a, mod 1, out a]</code> - but don&rsquo;t worry too much about what that all means, it&rsquo;s not necessary to know 😊</p>
-</blockquote>
+<code>[ osc, out ^freq, + a, mod 1, out a]</code> - but don&rsquo;t worry too much about what that all means, it&rsquo;s not necessary to know 😊</p></blockquote>
 <h2 id="instructive">Instructive</h2>
 <p>So that has been instructive. We&rsquo;ve not changed the language at all (except by extending it) and have retained everything that makes it unique. We&rsquo;ve kept the &lsquo;de-colonised&rsquo; nature of not relying on any western<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> preconceptions of what pitch, note or harmony are. (Not that any of those are particularly relevant to the examples above.)<br>
 But by using Strudel as a reference point it&rsquo;s made it easier to reason about what simplicity is and what we can do about it. A nice combination of flattery and schismogenesis, if you like :)</p>
@@ -109,8 +98,7 @@ But by using Strudel as a reference point it&rsquo;s made it easier to reason ab
 <p>One thing I&rsquo;ve been meaning to do<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> for a while is change the <code>/b</code> function to accept an input directly from the necklace. What does that mean? Well, currently <code>/b</code> starts with <code>in @</code> which means it ignores what is passed down the chain of operations. This is because it&rsquo;s usually written at the beginning of a listing anyway and saves having to type eg. <code>in 3</code> before it.<br>
 We could add an alternative which does accept input, making things simpler for modulating the &lsquo;divide down&rsquo; parameter (first argument) - something like:</p>
 <blockquote>
-<p><code>/b 1,0.5 lt 0.25 range 4,8 /m 0 bd 1 ;</code></p>
-</blockquote>
+<p><code>/b 1,0.5 lt 0.25 range 4,8 /m 0 bd 1 ;</code></p></blockquote>
 <p>Other things to consider include: could we use braces and parenthesis&rsquo; to change the order of operations and improve readability?</p>
 <p>Tune in another time to find out&hellip;</p>
 <hr>
