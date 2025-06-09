@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>My Journey Into Coding</title>
+      <link>http://syntelang.github.io/my-journey-into-coding/</link>
+      <pubDate>Mon, 09 Jun 2025 18:22:56 +0000</pubDate>
+      <guid>http://syntelang.github.io/my-journey-into-coding/</guid>
+      <description>This is my story, or should I say cautionary tale?</description>
+    </item>
+    <item>
       <title>Well-Being Primer</title>
       <link>http://syntelang.github.io/well-being-primer/</link>
       <pubDate>Sat, 19 Apr 2025 11:46:02 +0000</pubDate>
