@@ -8,6 +8,13 @@
     <language>en-gb</language>
     <atom:link href="http://syntelang.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Appreciation Thread</title>
+      <link>http://syntelang.github.io/appreciation-thread/</link>
+      <pubDate>Sat, 21 Jun 2025 21:57:11 +0000</pubDate>
+      <guid>http://syntelang.github.io/appreciation-thread/</guid>
+      <description>Who do I appreciate within the live coding scene?</description>
+    </item>
+    <item>
       <title>My Journey Into Coding</title>
       <link>http://syntelang.github.io/my-journey-into-coding/</link>
       <pubDate>Mon, 09 Jun 2025 18:22:56 +0000</pubDate>
