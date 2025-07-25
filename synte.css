@@ -175,3 +175,7 @@ blockquote {
 	padding-left: 2em;
 	border-left: 2px dotted #aaa;
 }
+
+#noai a {
+	color: #fff
+}
