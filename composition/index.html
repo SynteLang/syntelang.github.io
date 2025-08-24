@@ -63,6 +63,17 @@ Yes, you might want to know about &lt;bad things&gt; so you can do something abo
 Certainly limit your intake.<br>
 Maybe I should post about this in more depth?</p>
 <hr>
+<h2 id="also">also</h2>
+<p>Reading about musical serialism. Here&rsquo;s a generative Syntə piece that&rsquo;s loosely inspired by that for you to try out:</p>
+<p><code>in 32hz, out f, / 12, mul Phi, osc, push, flip, exb 4, smooth, out vca</code><br>
+<code>pop, lt 0.5, dirac, out gt</code><br>
+<code>in f, mul 9, osc, lpf gt, 8bit 12, base 2, mul 440hz, sino, mul vca, + c, push, tape 70ms, 4lp, alp1 125ms,0.5, mul 0.4, lpf 12khz, out c, pop, mix</code></p>
+<p>play around with the number 9, a value of one here will give a more serialist vibe for example.<br>
+Everything after <code>mul vca</code> is a basic reverb for niceness. The amplitude (loudness over time) of the sine oscillator <code>sino</code> is shaped via <code>vca</code> by <code>exb 4</code>, so that the envelope follows the pitch steps made by the first <code>osc</code> which uses <code>lpf</code> to sample and hold the second <code>osc</code>.<br>
+<code>base 2, mul 440hz</code> converts the discrete steps from 8bit 12 (a quantizer) into pitches.<br>
+This could be written more cleanly, like most of my code - but we said bad code only, right? :)<br>
+To type it in, the commas are optional (apart from the one after <code>alp1</code> which is required to separate the arguments with no spaces). I usually press the enter key instead of comma but it made more sense to write it like this for a blog post.</p>
+<hr>
 <p>Nb. this post contains various &lsquo;words&rsquo;. If you&rsquo;re not sure what any of them mean then I invite you to search for them on the internet or if you have one, a dictionary. Which can be a fun adventure.<br>
 That is to say I deliberately haven&rsquo;t explained everything here, independently seeking out cool knowledge is what we&rsquo;re all about, right?</p>
 <div class="footnotes" role="doc-endnotes">
