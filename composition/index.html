@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>Composition</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	<meta name="description" content="Lately I&#39;ve been pondering about composition - in the sense of the longer scale changes that happen throughout a piece or performance." />
+	<meta property="og:url" content="http://syntelang.github.io/composition/">
+    <meta property="og:image" content="https://syntelang.github.io/logo.png">
+    <meta property="og:site_name" content="Syntə Blog">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="https://syntel8.bandcamp.com">🎶</a>
+		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#43-07-24-8-2025">back</a>
+<p class="date">24/08/2025</p>
+<h1>Composition</h1>
+<div class="content">
+	<p>Lately I&rsquo;ve been pondering about composition - in the sense of the longer scale changes that happen throughout a piece or performance.</p>
+<p>Mostly live code happens at the interval of a loop, bar or cycle - typically a couple of seconds or less repeated (with changes) over time. Larger time scales could involve chord progressions or rhythmic variations happening over multiple of the shorter cycles.<br>
+This can be summed up in Strudel notation like so:</p>
+<blockquote>
+<p><code>n(&quot;0 1 2 3&quot;.add(&quot;&lt;0 1 0 3&gt;&quot;))</code></p></blockquote>
+<p>You will need to add a scale for that to do anything, the things to notice are the first pattern (in quotes) goes over one cycle and the second over four of those cycles (due to the angle brackets).</p>
+<p>What I&rsquo;ve been thinking about is what happens beyond that in terms of larger time structures. My impression is that most artists (including imposters as always) develop their code over time manually<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, myself included. So over timescales the amount that code is performed by the machine differs from automated (shorter time) to human-led (longer time). As always I find myself asking, does this always need to be the case?</p>
+<p>Well, if a performance was entirely set out beforehand then it would be a generative piece. And while that is also cool, it makes for a less fun experience for artist and audience. Note that this doesn&rsquo;t mean every note is decided in advance - the patterns and changes can be emergent, say from the interplay of different elements evolving over different (or non-commensurate) frequencies.<br>
+A recent example of a generative piece is <a href="https://www.youtube.com/65propaganda/live">Wreckage Systems</a>
+by 65daysofstatic.<br>
+And we can hardly expect coders to type in very short time frames, so it&rsquo;s natural to let the computer do the small stuff.</p>
+<h2 id="but-still">but still</h2>
+<p>While I don&rsquo;t really want to perform generative pieces - although it is fun to make them - I&rsquo;ve still been seeking ways to create variation over time.<br>
+One thing that I&rsquo;ve suffered with since like forever is getting stuck in one or four bar loops and finding it hard to break out. It&rsquo;s surprised me that this still happens in live coding as Syntə doesn&rsquo;t inherently have any kind of loop/cycle-ness.  However, you can create synced structures (by convention using the <code>sync</code> signal and <code>/b</code>, <code>/s</code> functions). This was something I added much later in my exploration of the language, probably because I knew it could get me stuck. An earlier iteration (which is still available) comprises the <code>&gt;sync</code> operator and <code>posc</code> function. Which I should probably use more.</p>
+<h2 id="syncing-feeling">syncing feeling</h2>
+<p>What&rsquo;s all this about sync?<br>
+Well, having things that play together in time seems to lead to loops forming. Or does it always?<br>
+Either way, it&rsquo;s possible to not synchronise anything and have free running wave patterns interplay between each other. Which is great, but when you make a change it could disrupt the cycles in a less appealing way. So sync can be used to periodically reset the phase of things to avoid too much &lsquo;mush&rsquo; (which is not always desirable). It also enables resetting things in atypical ways to create strange beats.</p>
+<h2 id="so-anyway">so anyway</h2>
+<p>I&rsquo;ve been thinking about larger structures and how we can make them, or should everything be done by hand?<br>
+I guess as always it&rsquo;s about a mixture of approaches. Some of which I have already alluded to.<br>
+Here&rsquo;s a list:</p>
+<ul>
+<li>free running oscillators/waves at different frequencies that produce variation among more regular elements</li>
+<li>using <code>posc</code> to keep things occasionally in sync</li>
+<li>making patterns/shapes over longer time scales than four or eight bars, while keeping room for human interaction</li>
+<li>elements that only happen every so often</li>
+</ul>
+<h2 id="that-is-all">that is all</h2>
+<p>I&rsquo;ve been reading Human Kind by Rutger Bregman which reminds of how toxic and bad for your health &rsquo;the news&rsquo; is.<br>
+Yes, you might want to know about &lt;bad things&gt; so you can do something about it, but there are ways round that - certain podcasts, longer form media etc.<br>
+Certainly limit your intake.<br>
+Maybe I should post about this in more depth?</p>
+<hr>
+<p>Nb. this post contains various &lsquo;words&rsquo;. If you&rsquo;re not sure what any of them mean then I invite you to search for them on the internet or if you have one, a dictionary. Which can be a fun adventure.<br>
+That is to say I deliberately haven&rsquo;t explained everything here, independently seeking out cool knowledge is what we&rsquo;re all about, right?</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The word manual is derived from Latin for hand, it&rsquo;s literally &lsquo;by hand&rsquo;&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+	
+</div>
+
+
+		<a href="/composition/">&uarr; top</a>
+	</div>
+</body>
+</html>
