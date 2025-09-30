@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>An Interesting Compressor</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	<meta name="description" content="taking a look inside a compressor for fun" />
+	<meta property="og:url" content="http://syntelang.github.io/an-interesting-compressor/">
+    <meta property="og:image" content="https://syntelang.github.io/logo.png">
+    <meta property="og:site_name" content="Syntə Blog">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="https://syntel8.bandcamp.com">🎶</a>
+		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#37-12-29-9-2025">back</a>
+<p class="date">29/09/2025</p>
+<h1>An Interesting Compressor</h1>
+<div class="content">
+	<p>When Alex/yaxu mentioned <a href="https://post.lurk.org/@yaxu/115270848806158287">&ldquo;MSG and its excellent compressor&rdquo;</a> my interest was immediately piqued - I expected I&rsquo;d be able to look at the source code and I&rsquo;m always interested to look at compressor designs - I wasn&rsquo;t disappointed.<br>
+Here we&rsquo;ll look at the design, work out what makes it special, and discuss possible modifications to expand possible use cases.</p>
+<h2 id="note">note</h2>
+<p>The version I looked at was the one in Alex&rsquo;s <a href="https://github.com/yaxu/slub/tree/master/datadirt">datadirt</a> which is based largely on MSG (I haven&rsquo;t checked so there could be differences)<br>
+Also - I am not an expert - there could/will be errors here, please email if so :)<br>
+Not that I believe experts exist, but&hellip;</p>
+<h2 id="innards">innards</h2>
+<p>It took me a while to figure out the action of the compressor, what helped was rearranging things a little bit to present it in a way I could understand.</p>
+<p>The code in question is:
+<img src="/comp-code.png" alt="MSG compressor code"></p>
+<p>Here we see that it is nice and succinct - always a good sign :)<br>
+The COMPRESSORGAIN constant&rsquo;s value is 200 and controls the speed, or release, of the compressor action. I&rsquo;m not sure why this wasn&rsquo;t encoded as <code>0.002</code> instead, that&rsquo;s the value I have used below.<br>
+The <code>loudest</code> variable is straighforwardly derived as the comment describes, which is always a good idea to avoid under-controlling loud signals that are panned to either side.<br>
+So far so good.<br>
+Skipping back to the first line, the incrementing of <code>compressor</code> threw me a bit at first, but it makes sense eventually (took me a while!)<br>
+Let&rsquo;s do some rearranging to simplify things a bit.<br>
+First let&rsquo;s introduce <code>k = 1/compressor</code> for reasons that will become clear.<br>
+Then we can also breakdown the abs function next, as <code>abs(x*y) = abs(x)*abs(y)</code> (multiplicativity)<br>
+so <code>abs(loudest * compressor)</code> can be rewritten as <code>abs(loudest) * abs(compressor)</code>, and seeing as <code>compressor</code> can only be set to a positive value or incremented we can use<br>
+<code>loudest * compressor &gt; 1</code><br>
+which is equivalent to<br>
+<code>loudest &gt; 1/compressor</code><br>
+then substituting <code>k</code>,<br>
+<code>loudest &gt; k</code><br>
+is the <code>if</code> clause.<br>
+Now, rearranging the assignment to:<br>
+<code>compressor = compressor/compressor * 1/loudest</code><br>
+by taking the same liberties with <code>abs</code>, noticing <code>compressor/compressor = 1</code> and substituting <code>k</code> again, we obtain:<br>
+<code>k = loudest</code><br>
+Putting that all together, and ignoring stereo for now, we get:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>k <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>k <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.002</span>)
+</span></span><span style="display:flex;"><span>loudest <span style="color:#f92672">=</span> <span style="color:#a6e22e">abs</span>(input)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> loudest <span style="color:#f92672">&gt;</span> k {
+</span></span><span style="display:flex;"><span>    k <span style="color:#f92672">=</span> loudest
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> input <span style="color:#f92672">/</span> k
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">*=</span> <span style="color:#ae81ff">0.8</span>
+</span></span></code></pre></div><p>which is something I can get my head around :)</p>
+<h2 id="analysis">analysis</h2>
+<p>The first thing we notice is that the action is peak-hold, that is to say the compression is updated when the input exceeds the previous level of k.<br>
+The ratio is infinite, so it&rsquo;s a limiter. And the gain is updated instantaneously (zero attack) and decays away in an exponential-like way as <code>~1/t</code> (<code>compressor</code> increases linearly with time and <code>k</code> is <code>1/compressor</code>).<br>
+That might sound fairly conventional, however there some interesting quirks that make it special.<br>
+The decay is steeper than exponential at onset, with a &rsquo;long tail&rsquo;.<br>
+The gain has no lower bound, so without input <code>k</code> will approach zero and the potential gain will actually <em>increase</em> the input as opposed to attenuate it, a technique known as upward compression. This also means that under limiting conditions, a transient will &lsquo;snap to&rsquo; a value of 1, while low end sounds (which are the most prominent in typical music) will be harmonically distorted in proportion to their frequency - the lower the frequency the longer the interval between peaks and the further <code>k</code> will decrease, leading to a bigger jump. All of these things put together make a characterful, punchy and fun effect.</p>
+<p>One other thing to note is that until <code>compressor</code> has had a chance to rise (after around half a second) the first transient will need to be greater than ±2 to trigger the limiting action.</p>
+<h2 id="so-is-our-analysis-correct">so is our analysis correct?</h2>
+<p>Well, we need to try this out. I could have written some code to feed signals into the design and plot the output values with a library, however that might take a bit of time and also I have a sound engine to hand that can produce recordings which we can view in an application like <code>audacity</code> (I&rsquo;m still considering alternatives to that for general use but haven&rsquo;t got round to it yet&hellip;)</p>
+<p>Let&rsquo;s put the code in something closer to it&rsquo;s original form (mono version), shortening variable names:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>c <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.002</span>
+</span></span><span style="display:flex;"><span>l <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">abs</span>(input)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> l <span style="color:#f92672">&lt;</span> c {
+</span></span><span style="display:flex;"><span>    c <span style="color:#f92672">=</span> l
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> input <span style="color:#f92672">*</span> c
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">*=</span> <span style="color:#ae81ff">0.8</span>
+</span></span></code></pre></div><p>note the comparison has been flipped due to the inversion of <code>l</code>, and that the conditional is equivalent to <code>c = min(c, l)</code>.<br>
+So:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>c <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.002</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> <span style="color:#a6e22e">min</span>(c, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">abs</span>(input))
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">*=</span> c
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">*=</span> <span style="color:#ae81ff">0.8</span>
+</span></span></code></pre></div><p>aside: integrating 0.002 at 44100Hz results in a frequency of ~88hz or period ~11ms, so to maintain consistent timing at different sample rates <code>88/SampleRate</code> could be used instead.</p>
+<p>In Syntə, the equivalent code (presented in vertical form) is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>out x
+</span></span><span style="display:flex;"><span>abs
+</span></span><span style="display:flex;"><span>\ 1
+</span></span><span style="display:flex;"><span>min &#34;c
+</span></span><span style="display:flex;"><span>+ 11ms
+</span></span><span style="display:flex;"><span>out &#34;c
+</span></span><span style="display:flex;"><span>mul x
+</span></span><span style="display:flex;"><span>mul 0.8
+</span></span></code></pre></div><p>where <code>&quot;</code> denotes a default value of 0.5 (as in the original compressor) and <code>x</code> is the input value. With one minor difference that, for convenience, <code>&quot;c</code> (which represents the <code>compressor</code> variable) is incremented after the conditional.<br>
+If you want to try it you&rsquo;ll need to define:<br>
+<code>[ min, - @, out a, lt 0, mul a, + @, ]</code></p>
+<p>Now let&rsquo;s run it and see what happens!</p>
+<p>screenshots:</p>
+<p><img src="/compressor/kickA.png" alt="kick drum"></p>
+<p>A basic kick drum consisting of a 100Hz sine wave with a slightly rounded exponential decay envelope.</p>
+<p><img src="/compressor/kickB.png" alt="kick drum compressed"></p>
+<p>The same kick drum played through the compressor, showing the boost in level.</p>
+<p><img src="/compressor/kickBzoom.png" alt="kick drum compressed zoom"></p>
+<p>Zoomed in detail of the same waveform showing the harmonic distortion.</p>
+<p><img src="/compressor/kicknoiseA.png" alt="kick drum + noise"></p>
+<p>The kick drum with a background of white noise.</p>
+<p><img src="/compressor/kicknoiseB.png" alt="kick drum + noise compressed"></p>
+<p>Showing the boost in the noise under compression, onset exhibiting &lsquo;pumping&rsquo; artefacts.</p>
+<h2 id="in-practice">in practice</h2>
+<p>Although I haven&rsquo;t tried the orginal software, I expect this compressor works well for the application it was designed for. Which you could essentially call a bus compressor.
+However, if you wanted to use it for other things such as a channel compressor where there might be quiet passages, you could add <code>min 2</code> before assigning <code>out &quot;c</code>. This will constrain the upward compression to 6db for a milder effect.<br>
+Which indeed we see here:</p>
+<p><img src="/compressor/kicknoisemin.png" alt="kick drum constrained compression"></p>
+<p>This is a similar input as the previous example, showing a controlled noisefloor. The level of the kick is less &rsquo;nailed&rsquo; to maximum gain too.</p>
+<p>We can run it with <code>'c</code> (initialised to 1) but this only changes the first onset of limiting.
+You could drop the <code>* 0.8</code> that introduces ~2dB of headroom if you want, given that the zero-attack limiting keeps the output pinned to ±1.</p>
+<p>a note of caution: if you are using the original form of this on a loud system, be within reach of a direct level control or have an attentive sound engineer - due to the potentially unconstrained gain at any frequency there is no guarantee you won&rsquo;t have any painfully loud surprises.</p>
+<h2 id="syntax">syntax</h2>
+<p>previously on this blog we have considered code readability and expressiveness. We have another opportunity now to draw a comparison, in this case between Syntə and C. Looking at the examples above, what do we notice? The Syntəlang version is more compact and terse, which is by design - the language prioritises typing speed for live use. However, the C version is easier to read? This isn&rsquo;t necessarily a problem as the Syntə code would likely be wrapped as a function like <code>[ msg ... ]</code> and the insides wouldn&rsquo;t need to be examined.<br>
+Something makes me feel that the amount of typing required and readability are natural adversaries, so that is a tradeoff to be made. An example being that short variable names are quick to type, while longer ones can convey meaning that tells you what the variable represents.<br>
+The other thing to note is the implicit variable that is the signal passed between successive Syntə operations/functions - to the casual eye this is a hidden effect. Which again, is deliberate.<br>
+The comparison is something to ponder on at least.</p>
+<h2 id="toodle-pip">toodle pip</h2>
+<p>I hope you found that brief diversion as fun as I did, or perhaps learnt something about DSP along the way. As always, I&rsquo;d be interested to hear any thoughts/comments you have :)</p>
+
+	
+</div>
+
+
+		<a href="/an-interesting-compressor/">&uarr; top</a>
+	</div>
+</body>
+</html>
