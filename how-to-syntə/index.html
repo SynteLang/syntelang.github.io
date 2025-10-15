@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A blog by developer of the Synte live coding language">
+	<title>How to Syntə</title>
+	<link rel="stylesheet" type="text/css" href="/synte.css">
+	<meta name="description" content="how the hell am i supposed to use this to make music??" />
+	<meta property="og:url" content="http://localhost:1313/how-to-synt%C9%99/">
+    <meta property="og:image" content="https://syntelang.github.io/logo.png">
+    <meta property="og:site_name" content="Syntə Blog">
+	
+</head>
+
+<body>
+	<div class="topbar">
+		<a class="synte" href="/"><span id="logo">◌</span>Syntə</a>
+		<a class="rss" href="/index.xml">RSS</a>
+		<a class="link" href="https://github.com/syntelang/" rel="me">repo</a>
+		<a class="link" rel="me" href="https://social.toplap.org/@synte">@m</a>
+		<a class="link" href="https://syntel8.bandcamp.com">🎶</a>
+		<a class="link" href="mailto:synte@proton.me?subject=Hi!">say hi!</a>
+	</div>
+	<div class=wrapper>
+		
+
+<a class="back" href="/#52-11-15-10-2025">back</a>
+<p class="date">15/10/2025</p>
+<h1>How to Syntə</h1>
+<div class="content">
+	<p>you may have noticed that Syntə has no sequencing - no way of putting in a list of numbers/notes/names to play a series of sounds. This is deliberate.<br>
+You may find yourself asking - so how the hell am I supposed to use this to make music?</p>
+<p>good question!</p>
+<p>Admittedly, it was never designed to make music, certainly not in any conventional sense. Which might seem a bit strange. The concept was more about just, y&rsquo;know, making sounds.<br>
+However, it turns out that music is a type of sound so we&rsquo;re all good hehe.</p>
+<h2 id="sequencing">sequencing</h2>
+<p>Lot&rsquo;s of live coding languages offer this, if not nearly all of them.<br>
+but there was something that didn&rsquo;t sit quite right with me about it.</p>
+<p>I mean, sure it&rsquo;s a useful and quick way of writing music - you define a series of notes or events and play them in a cycle.<br>
+well, I didn&rsquo;t even want to be trapped in a cycle either :)</p>
+<h2 id="other-things-syntə-doesnt-have">other things Syntə doesn&rsquo;t have</h2>
+<p>I&rsquo;ve never really liked the idea of envelopes, especially the adsr kind. For me, very few sounds are even that kind of shape. I used envelopes when designing/prototyping analog synths - but I found really that there were only a few shapes needed: a slow building/decaying one, an on then off one, and a exponentially decaying one.<br>
+notes - do we really need them? Isn&rsquo;t the idea of the western 12 tone equal temperament notes a bit limiting? plus long ago I have discovered pure ratios aka just intonation and liked the idea of that in particular.</p>
+<h2 id="ive-listened-to-your-bandcamp-and-i-can-hear-notes---what-gives">i&rsquo;ve listened to your bandcamp and I can hear notes - what gives?</h2>
+<p>ok, so let me flesh this out a bit.<br>
+there is something arbitrary about sequences - you just put in a list of values and off you go - but aren&rsquo;t we studying patterns here?<br>
+part of the motivation for me was/is to study what are melodies and chord progressions etc? Can we find patterns within them?</p>
+<p>so basically, to make notes/beats/etc within Syntə you need to construct them from a pattern.</p>
+<p>here&rsquo;s an example:</p>
+<pre tabindex="0"><code>def 140bpm,4
+
+/b 4,0, trn 4, bdfm 12,320hz, mix
+</code></pre><p>the first listing defines a tempo and number of beats per bar.<br>
+(this is optional, there are other ways)<br>
+the second listing plays an fm bass drum four times (regularly spaced) in one bar.</p>
+<p>equivalently we could have written only:</p>
+<pre tabindex="0"><code>in 140bpm, osc, trn 4, bdfm 12,320hz, mix
+</code></pre><p>so why do the <code>def</code> thing? well this enables other listings to be locked to the same loop.<br>
+also, another thing to add: <code>trn 4</code> flips and truncates the <code>osc</code> (which is a ramp wave).<br>
+remember we said no envelopes? well we kinda have one there. oh really?
+yup. except it is a repeating envelope. so there&rsquo;s no separation between the frequency/rhythm and the shape of the sound. am I making sense?
+A diagram would help, I think.
+<img src="/wavediagram.png" alt="diagram">
+Can you start to see what is going on here?</p>
+<p>one of the benefits is that we can filter the shape of the sound!<br>
+to make it more rounded:<br>
+<code>... osc, trn 4, lpf 5hz, ...</code><br>
+to make it sharper:<br>
+<code>... osc, trn 4, hpf 1hz, ...</code></p>
+<h2 id="yeah-but-thats-not-really-a-beat">yeah but that&rsquo;s not really a beat</h2>
+<p>there are loads of techniques I&rsquo;m still exploring to make beats in different ways.<br>
+for a simple euclidean rhythm:</p>
+<pre tabindex="0"><code>def 140bpm,4
+
+/s 5,0, s/h grid, dec 100ms, bdfm 12,320hz, mix
+</code></pre><p>here we make use of <code>grid</code> which has been defined within <code>def</code>.<br>
+<code>s/h grid</code> locks the pulses from <code>/s</code> to 16th notes.<br>
+because the first argument of <code>/s</code> is <code>5</code> the pulses become unevenly distributed over the grid.<br>
+<code>dec 100ms</code> is like an envelope, it converts the pulses to a shape like in the diagram above.</p>
+<p>usually what I do is have a separate listing for each drum sound, but you don&rsquo;t have to.</p>
+<p>I&rsquo;ve also been experimenting with different versions of <code>def</code> that allow shuffle.</p>
+<p>another thing to note is that i&rsquo;m showing these in horizontal form (how they would be displayed with <code>synte -l</code>), while when you type them in or edit would be in vertical form (without commas, each operator operand pair or function on a new line)<br>
+the previous example in vertical form:</p>
+<pre tabindex="0"><code>/s 5,0
+s/h grid
+dec 100ms
+bdfm 12,320hz
+mix
+</code></pre><h2 id="taking-it-further">taking it further</h2>
+<p>you can modulate the frequency of <code>/s</code> to create variation.</p>
+<pre tabindex="0"><code>/b 1,0, gt 0.5, range 4,6, out b
+/s b,0, s/h grid, dec 100ms, bdfm 12,320hz, mix
+</code></pre><p><code>/b 1,0, gt 0.5</code> creates a shape similar to <code>/s</code> but flipped (you could also use <code>/s 1,0, flip</code>)<br>
+the square is low for the first half of <code>/b</code> and high for the second half.<br>
+then the square wave is mapped between 4 and 6 and sent to a signal which we have named <code>b</code>.<br>
+so b receives a stream if fours and sixes.<br>
+then <code>/s</code> uses <code>b</code> and so for the first half of the bar it is a 4/4 beat, and the second half is euclidean(6,16).</p>
+<h2 id="this-may-be-confusing">this may be confusing</h2>
+<p>tbh it confused me for a long time too. So why bother? well like I said, I wanted to explore ways of creating patterns from numbers - it&rsquo;s really helped me creatively and offers ways to escape predictable loops.<br>
+for example, you could try:</p>
+<pre tabindex="0"><code>in 3hz, sq, range 4,6, out b
+/s b,0, s/h grid, dec 100ms, bdfm 12,320hz, mix
+</code></pre><p>where we now have a free running oscillator changing <code>b</code> out of sync with everything else.</p>
+<p>i will leave talking about musical pitches and generating melodies for another time :)</p>
+<h2 id="the-bottom-line">the bottom line</h2>
+<p>If we wanted to make regular music, well we could just &lsquo;use a daw&rsquo;. and for cycle patterns we have the awesome Strudel and TidalCycles (among others).<br>
+Syntə is here for something different and naturally that takes some getting your head around.<br>
+with the unexpected bonus that it really helps creativity in my experience.</p>
+<h2 id="the-other-bottom-line">the other bottom line</h2>
+<p>I love talking about this stuff, so get in touch if you want to learn or discuss anything!</p>
+<p>happy synthesising!</p>
+
+	
+</div>
+
+
+		<a href="/how-to-synt%C9%99/">&uarr; top</a>
+	</div>
+</body>
+</html>
